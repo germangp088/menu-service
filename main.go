@@ -18,6 +18,8 @@ func Initialize() {
 	menu.Init()
 	router := mux.NewRouter()
 	router.HandleFunc("/menu", menu.GetMenu).Methods("GET")
+	router.HandleFunc("/meal/{id}", menu.GetMeal).Methods("GET")
+	router.HandleFunc("/cash", menu.GetCash).Methods("GET")
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
