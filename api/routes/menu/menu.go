@@ -67,6 +67,13 @@ func AddMeal(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(_menu)
 }
 
+func PutMeal(w http.ResponseWriter, req *http.Request) {
+	var meal meal.Meal
+	_ = json.NewDecoder(req.Body).Decode(&meal)
+	_menu.Update(meal)
+	json.NewEncoder(w).Encode(_menu)
+}
+
 func Order(w http.ResponseWriter, req *http.Request) {
 	var o order.Order
 	_ = json.NewDecoder(req.Body).Decode(&o)

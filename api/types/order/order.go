@@ -12,7 +12,9 @@ func (o Order) Calculate(m menu.Menu) float32 {
 	var total float32
 	for _, item := range o.IDs {
 		meal := m.Find(item)
-		total += meal.Price
+		if meal != nil {
+			total += meal.Price
+		}
 	}
 	return total
 }

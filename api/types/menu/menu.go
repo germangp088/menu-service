@@ -17,3 +17,11 @@ func (m Menu) Find(id string) *meal.Meal {
 	}
 	return nil
 }
+
+func (m *Menu) Update(meal meal.Meal) {
+	for i := 0; i < len(m.Meals); i++ {
+		if m.Meals[i].ID == meal.ID {
+			m.Meals[i] = meal
+		}
+	}
+}

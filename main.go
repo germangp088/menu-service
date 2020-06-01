@@ -20,6 +20,7 @@ func Initialize() {
 
 	router.HandleFunc("/menu", menu.GetMenu).Methods("GET")
 	router.HandleFunc("/menu", menu.AddMeal).Methods("POST")
+	router.HandleFunc("/menu", menu.PutMeal).Methods("PUT")
 	router.HandleFunc("/meal/{id}", menu.GetMeal).Methods("GET")
 	router.HandleFunc("/cash", menu.GetCash).Methods("GET")
 	router.HandleFunc("/cash", menu.Order).Methods("POST")
