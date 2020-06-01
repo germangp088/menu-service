@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	meal "menu-service/api/types/meal"
 	menu "menu-service/api/types/menu"
+	order "menu-service/api/types/order"
 	"net/http"
 
 	guuid "github.com/google/uuid"
@@ -11,7 +12,7 @@ import (
 )
 
 var _menu menu.Menu
-var _cash int
+var _cash float32
 
 func Init() {
 	Sections()
@@ -64,4 +65,13 @@ func AddMeal(w http.ResponseWriter, req *http.Request) {
 
 	_menu.Meals = append(_menu.Meals, meal)
 	json.NewEncoder(w).Encode(_menu)
+}
+
+func Order(w http.ResponseWriter, req *http.Request) {
+	var o order.Order
+	_ = json.NewDecoder(req.Body).Decode(&o)
+
+	_cash += o.Calculate(_menu)
+
+	json.NewEncoder(w).Encode(_cash)
 }

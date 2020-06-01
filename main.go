@@ -22,6 +22,7 @@ func Initialize() {
 	router.HandleFunc("/menu", menu.AddMeal).Methods("POST")
 	router.HandleFunc("/meal/{id}", menu.GetMeal).Methods("GET")
 	router.HandleFunc("/cash", menu.GetCash).Methods("GET")
+	router.HandleFunc("/cash", menu.Order).Methods("POST")
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
