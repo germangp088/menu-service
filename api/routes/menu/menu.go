@@ -55,3 +55,13 @@ func GetMeal(w http.ResponseWriter, req *http.Request) {
 func GetCash(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(_cash)
 }
+
+func AddMeal(w http.ResponseWriter, req *http.Request) {
+	var meal meal.Meal
+	_ = json.NewDecoder(req.Body).Decode(&meal)
+
+	meal.ID = guuid.New().String()
+
+	_menu.Meals = append(_menu.Meals, meal)
+	json.NewEncoder(w).Encode(_menu)
+}

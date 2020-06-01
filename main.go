@@ -17,7 +17,9 @@ func main() {
 func Initialize() {
 	menu.Init()
 	router := mux.NewRouter()
+
 	router.HandleFunc("/menu", menu.GetMenu).Methods("GET")
+	router.HandleFunc("/menu", menu.AddMeal).Methods("POST")
 	router.HandleFunc("/meal/{id}", menu.GetMeal).Methods("GET")
 	router.HandleFunc("/cash", menu.GetCash).Methods("GET")
 
